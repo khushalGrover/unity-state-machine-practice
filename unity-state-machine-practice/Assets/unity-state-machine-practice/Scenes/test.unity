@@ -793,9 +793,8 @@ MonoBehaviour:
   rotationFactorPerFrame: 10
   speedFactorPerFrame: 3
   runMultiplier: 5
-  initialJumpVelocity: 0
   maxJumpHeight: 4
-  maxJumpTime: 0.5
+  maxJumpTime: 0.75
 --- !u!1 &1691703394
 GameObject:
   m_ObjectHideFlags: 0
