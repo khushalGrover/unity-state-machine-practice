@@ -790,9 +790,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd370b7b246674c459c813c5320ccb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationFactorPerFrame: 10
-  speedFactorPerFrame: 3
-  runMultiplier: 5
+  rotationFactorPerFrame: 15
+  speedFactorPerFrame: 1
+  runMultiplier: 4
   maxJumpHeight: 2
   maxJumpTime: 0.75
 --- !u!1 &1691703394
