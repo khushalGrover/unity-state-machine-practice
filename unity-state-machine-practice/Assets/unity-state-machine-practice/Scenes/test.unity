@@ -790,6 +790,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd370b7b246674c459c813c5320ccb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationFactorPerFrame: 10
+  speedFactorPerFrame: 3
+  runMultiplier: 5
+  initialJumpVelocity: 0
+  maxJumpHeight: 4
+  maxJumpTime: 0.5
 --- !u!1 &1691703394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,9 +1195,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jammo_Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4757836856755875625, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4757836856755875626, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
       propertyPath: Velocity
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757836856755875626, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4757836856755875627, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
       propertyPath: m_MinMoveDistance
@@ -1205,7 +1219,9 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: dbfd967be3da5604a9c2ed78cd8f859d, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4757836856755875625, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
+    - {fileID: 4757836856755875626, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
