@@ -785,16 +785,33 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949334372}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd370b7b246674c459c813c5320ccb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationFactorPerFrame: 15
-  speedFactorPerFrame: 1
-  runMultiplier: 4
-  maxJumpHeight: 2
-  maxJumpTime: 0.75
+  _rotationFactorPerFrame: 1
+  _speedFactorPerFrame: 1
+  _runMultiplier: 3
+  _maxJumpHeight: 4
+  _maxJumpTime: 0.75
+--- !u!114 &949334382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949334372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc3fbd37d9369b540863d45019aa9f37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationFactorPerFrame: 15
+  _speedFactorPerFrame: 2
+  _runMultiplier: 4
+  _maxJumpHeight: 2
+  _maxJumpTime: 0.75
 --- !u!1 &1691703394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,6 +1244,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3541754002163558908, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 949334378}
+    - targetCorrespondingSourceObject: {fileID: 3541754002163558908, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 949334382}
   m_SourcePrefab: {fileID: 100100000, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
