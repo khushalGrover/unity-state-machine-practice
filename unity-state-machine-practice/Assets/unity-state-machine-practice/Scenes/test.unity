@@ -790,9 +790,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd370b7b246674c459c813c5320ccb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationFactorPerFrame: 10
-  speedFactorPerFrame: 3
-  runMultiplier: 5
+  rotationFactorPerFrame: 15
+  speedFactorPerFrame: 1
+  runMultiplier: 4
   maxJumpHeight: 2
   maxJumpTime: 0.75
 --- !u!1 &1691703394
@@ -926,7 +926,7 @@ Transform:
   m_GameObject: {fileID: 1691703394}
   serializedVersion: 2
   m_LocalRotation: {x: 0.22095272, y: 0, z: 0, w: 0.9752846}
-  m_LocalPosition: {x: 0, y: 3.77, z: -4.64}
+  m_LocalPosition: {x: 0, y: 5.37, z: -4.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

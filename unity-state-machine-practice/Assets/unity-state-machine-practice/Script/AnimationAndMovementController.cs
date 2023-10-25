@@ -108,8 +108,8 @@ public class AnimationAndMovementController : MonoBehaviour
             isJumping = true;
             jumpCount++;
             animator.SetInteger(jumpCountHash, jumpCount);
-            currentMovement.y = initialJumpVelocities[jumpCount];
-            appliedMovement.y = initialJumpVelocities[jumpCount] ;
+            currentMovement.y = initialJumpVelocities[jumpCount] * .8f;
+            appliedMovement.y = initialJumpVelocities[jumpCount] * .8f;
         }
         else if (!isJumpPressed && isJumping && characterController.isGrounded)
         {
@@ -172,7 +172,6 @@ public class AnimationAndMovementController : MonoBehaviour
         if (isMovementPressed && !isWalking)
         {
             animator.SetBool(isWalkingHash, true);
-            Debug.Log("start walking");
         }
         // stop walking if isMovementpressed is false and not already walking
         else if (!isMovementPressed && isWalking)
@@ -208,11 +207,15 @@ public class AnimationAndMovementController : MonoBehaviour
                 {
                     jumpCount = 0;
                     animator.SetInteger(jumpCountHash, jumpCount);
+
                 }
+
             }
             currentMovement.y = groundGravity;
             appliedMovement.y = groundGravity;
-        }else if (isFalling)
+
+        }
+        else if (isFalling)
         {
             float previousYVelocity = currentMovement.y;
             currentMovement.y = currentMovement.y + (jumpGravities[jumpCount] * fallMultiplayer * Time.deltaTime);
@@ -221,8 +224,9 @@ public class AnimationAndMovementController : MonoBehaviour
         else
         {
             float previousYVelocity = currentMovement.y;
-            float newYVelocity = currentMovement.y + (jumpGravities[jumpCount] * Time.deltaTime);
+            currentMovement.y = currentMovement.y + (jumpGravities[jumpCount] * Time.deltaTime);
             appliedMovement.y = (previousYVelocity + currentMovement.y) * .5f;
+
         }
     }
 
