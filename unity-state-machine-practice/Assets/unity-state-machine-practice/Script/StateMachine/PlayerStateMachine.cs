@@ -32,9 +32,9 @@ public class PlayerStateMachine : MonoBehaviour
     bool _isRunPressed;
 
     // const 
-    [SerializeField] 
+    [SerializeField]
     float _rotationFactorPerFrame = 1.0f;
-    [SerializeField] 
+    [SerializeField]
     float _speedFactorPerFrame = 1.0f;
     [SerializeField]
     float _runMultiplier = 3.0f;
@@ -49,9 +49,9 @@ public class PlayerStateMachine : MonoBehaviour
     bool _isJumping = false;
     bool _isJumpAnimating = false;
     float _initialJumpVelocity;
-    [SerializeField] 
+    [SerializeField]
     float _maxJumpHeight = 4.0f;
-    [SerializeField] 
+    [SerializeField]
     float _maxJumpTime = 0.75f;
     int _jumpCount = 0;
     Dictionary<int, float> _initialJumpVelocities = new Dictionary<int, float>();
@@ -63,14 +63,21 @@ public class PlayerStateMachine : MonoBehaviour
     PlayerStateFactory _states;
 
     // Getters and Setters 
-    public PlayerBaseState CurrentState {  get { return _currentState; } set { _currentState = value; } } 
+    public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
     public Animator Animator { get { return _animator; } }
+    public CharacterController CharacterController { get { return _characterController; } set { _characterController = value; } }
     public Coroutine CurrentJumpResetRoutine { get { return _currentJumpResetRoutine; } set { _currentJumpResetRoutine = value; } }
-    public Dictionary<int, float> InitialJumpVelocities { get { return _initialJumpVelocities;  }}
+    public Dictionary<int, float> InitialJumpVelocities { get { return _initialJumpVelocities; } }
     public int JumpCount { get { return _jumpCount; } set { _jumpCount = value; } }
     public int JumpCountHash { get { return _jumpCountHash; } }
-    public int IsJumpingHash { get { return _jumpCountHash; } }
+    public bool IsJumpAnimating { set { _isJumpAnimating = value; } }
+    public int IsJumpingHash { get { return _isJumpingHash; } }
+    public bool IsJumping { set {_isJumping = value; }}
     public bool IsJumpPressed { get { return _isJumpPressed; }}
+    public float GroundedGravity { get { return _groundGravity; }}
+    public Dictionary<int, float> JumpGravities { get { return _jumpGravities; } }
+    public float CurrentMovementY { get { return _currentMovementInput.y; } set { _currentMovement.y = value; } }
+    public float AppliedMovementY { get { return _appliedMovement.y; } set { _appliedMovement.y = value; } }
 
 
 
@@ -83,7 +90,7 @@ public class PlayerStateMachine : MonoBehaviour
 
         // Setup state
         _states = new PlayerStateFactory(this);
-        _currentState = _states.Ground();
+        _currentState = _states.Grounded();
         _currentState.EnterState();
         
         // set the parameter hash references
@@ -136,25 +143,30 @@ public class PlayerStateMachine : MonoBehaviour
     void Update()
     {
         handleRotation();
+        _currentState.UpdateState();
         _characterController.Move(_appliedMovement * Time.deltaTime);
+        Debug.Log(_currentState);
 
     }
-   
+
     void handleRotation()
     {
-        Vector3 _positionToLookAt;
+        Vector3 positionToLookAt;
         // the change in position our character should point to
-        _positionToLookAt.x = _currentMovement.x;
-        _positionToLookAt.y = 0;
-        _positionToLookAt.z = _currentMovement.z;
+        positionToLookAt.x = _currentMovementInput.x;
+        positionToLookAt.y = 0;
+        positionToLookAt.z = _currentMovementInput.y;
         // the current rotation of our character
         Quaternion _currentRotation = transform.rotation;
+        // Debug.Log(positionToLookAt);
+        Debug.Log(_isMovementPressed);
 
         if (_isMovementPressed)
         {
             // create a new rotation based on where the player is currently pressing
-            Quaternion _targetRotation = Quaternion.LookRotation(_positionToLookAt);
-            transform.rotation = Quaternion.Slerp(_currentRotation, _targetRotation, _rotationFactorPerFrame * Time.deltaTime);
+            Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
+            transform.rotation = Quaternion.Slerp(_currentRotation, targetRotation, _rotationFactorPerFrame * Time.deltaTime);
+            // Debug.Log(positionToLookAt + " " + targetRotation);
         }
 
     }

@@ -28,7 +28,7 @@ public class PlayerStateFactory
     {
         return new PlayerJumpState(_context, this);
     }
-    public PlayerBaseState Ground() 
+    public PlayerBaseState Grounded() 
     {
         return new PlayerGroundState(_context, this);
     }

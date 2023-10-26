@@ -37,7 +37,7 @@ public class AnimationAndMovementController : MonoBehaviour
 
     // jumping vairables
     bool _isJumpPressed = false;
-    bool isJumping = false;
+    bool _isJumping = false;
     bool _isJumpAnimating = false;
     float _initialJumpVelocity;
     [SerializeField]float _maxJumpHeight = 4.0f;
@@ -57,7 +57,7 @@ public class AnimationAndMovementController : MonoBehaviour
         // set the parameter hash references
         _isWalkingHash = Animator.StringToHash("isWalking"); 
         _isRunningHash = Animator.StringToHash("isRunning");
-        _isJumpingHash = Animator.StringToHash("isJumping");
+        _isJumpingHash = Animator.StringToHash("_isJumping");
         _jumpCountHash = Animator.StringToHash("jumpCount");
 
         // Set the player input callbacks ( This callback function are typilcally called when certain events take place, and Provode data for us to use from the event. )
@@ -97,7 +97,7 @@ public class AnimationAndMovementController : MonoBehaviour
 
     void handleJump()
     {
-        if(!isJumping && _characterController.isGrounded && _isJumpPressed)
+        if(!_isJumping && _characterController.isGrounded && _isJumpPressed)
         {
             if(jumpCount < 3 && _currentJumpResetRoutine != null)
             {
@@ -105,16 +105,16 @@ public class AnimationAndMovementController : MonoBehaviour
             }
             _animator.SetBool(_isJumpingHash, true);
             _isJumpAnimating = true;
-            isJumping = true;
+            _isJumping = true;
             jumpCount++;
             _animator.SetInteger(_jumpCountHash, jumpCount);
             _currentMovement.y = _initialJumpVelocities[jumpCount] * .8f;
             _appliedMovement.y = _initialJumpVelocities[jumpCount] * .8f;
         }
-        else if (!_isJumpPressed && isJumping && _characterController.isGrounded)
+        else if (!_isJumpPressed && _isJumping && _characterController.isGrounded)
         {
             // _animator.SetBool(_isJumpingHash, false);
-            isJumping = false;
+            _isJumping = false;
         }
     }
 
